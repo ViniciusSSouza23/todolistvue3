@@ -12,3 +12,16 @@
     </div>
   </footer>
 </template>
+<style lang="scss" scoped>
+.footer-component{
+  a{
+    color: #fff;
+    text-decoration: none;
+    transition: filter 1s;
+    &:hover{
+      filter: brightness(80%);
+      text-decoration: underline;
+    }
+  }
+}
+</style>
