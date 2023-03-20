@@ -1,5 +1,5 @@
 <template>
-  <header class="header-component bg-dark">
+  <header class="header-component">
     <div class="container py-5">
       <router-link to="/">Home</router-link>
       <router-link to="/">Gerenciar tarefas</router-link>
@@ -10,6 +10,7 @@
 </template>
 <style lang="scss" scoped>
 .header-component {
+  background-color: #000;
   a {
     text-decoration: none;
     color: #fff;

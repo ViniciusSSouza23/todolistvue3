@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer-component bg-dark">
+  <footer class="footer-component">
     <div class="container text-center py-4">
       <h6 class="mb-0">
         Desenvolvido por
@@ -14,6 +14,7 @@
 </template>
 <style lang="scss" scoped>
 .footer-component{
+    background-color: #000 !important;
   a{
     color: #fff;
     text-decoration: none;
