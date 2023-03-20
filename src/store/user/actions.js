@@ -34,7 +34,7 @@ export default {
   updateUser(context, data) {
     return new Promise((resolve, reject) => {
       window.axios
-        .patch("/users", data)
+        .put("/users", data)
         .then((response) => {
           resolve(response);
         })
