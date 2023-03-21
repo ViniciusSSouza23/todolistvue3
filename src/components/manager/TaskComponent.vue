@@ -81,7 +81,7 @@ export default {
       }
     },
     fullscreen() {
-      if (isMobile) {
+      if (isMobile()) {
         return true;
       } else {
         return false;

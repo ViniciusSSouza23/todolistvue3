@@ -84,7 +84,7 @@ export default {
   computed: {
     ...mapState("tasks", ["tasksList"]),
     fullscreen() {
-      if (isMobile) {
+      if (isMobile()) {
         return true;
       } else {
         return false;
