@@ -37,10 +37,10 @@ export default {
         .catch(reject);
     });
   },
-  updateTask(context, { user_id, data }) {
+  updateTask(context,   data ) {
     return new Promise((resolve, reject) => {
       window.axios
-        .put(`/users/${user_id}/tasks`, data)
+        .put(`/tasks/${data.id}`, data)
         .then((response) => {
           resolve(response);
         })
