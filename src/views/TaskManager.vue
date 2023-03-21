@@ -1,6 +1,15 @@
 <template>
   <div class="task-manager-view bg-dark">
-    <div class="container py-5">
+    <div v-if="loading" class="text-center py-5">
+      <div
+        class="spinner-border text-primary"
+        style="width: 5rem; height: 5rem"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="container py-5">
       <div class="custom-header pt-5">
         <div class="d-flex align-items-center">
           <h5 class="text-uppercase">Minhas Tarefas</h5>
@@ -57,13 +66,14 @@ export default {
       option: "all",
       newTaskModal: false,
       tasks: [],
+      loading: false,
     };
   },
   computed: {
     ...mapState("tasks", ["tasksList"]),
   },
   mounted() {
-   this.updateList();
+    this.updateList();
   },
   methods: {
     filterByTag(type) {
@@ -86,12 +96,15 @@ export default {
       }
     },
     updateList() {
-       this.$store
-      .dispatch("tasks/getUserTasks", this.$store.state.user.user.id)
-      .then(() => {
-        this.filterByTag(this.option)
-        
-      });
+      this.loading = true;
+      this.$store
+        .dispatch("tasks/getUserTasks", this.$store.state.user.user.id)
+        .then(() => {
+          this.filterByTag(this.option);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
   watch: {
