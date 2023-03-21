@@ -90,6 +90,7 @@ export default {
         })
         .finally(() => {
           this.loading = false;
+          this.$emit("change");
         });
     },
     exclude() {
@@ -105,7 +106,7 @@ export default {
         })
         .finally(() => {
           this.loading = false;
-          
+          this.$emit("change");
         });
     },
   },

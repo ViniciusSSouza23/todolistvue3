@@ -30,11 +30,11 @@
 
       <div v-if="tasksList.length" class="row py-3">
         <div
-          v-for="task in tasksList"
+          v-for="task in tasks"
           :key="task.id"
           class="col-lg-4 col-md-6 mb-5 d-flex"
         >
-          <task-component :task="task" />
+          <task-component :task="task" @change="updateList" />
         </div>
       </div>
       <div class="py-3" v-else>
@@ -56,23 +56,53 @@ export default {
     return {
       option: "all",
       newTaskModal: false,
+      tasks: [],
     };
   },
   computed: {
     ...mapState("tasks", ["tasksList"]),
   },
   mounted() {
-    this.$store.dispatch("tasks/getUserTasks", this.$store.state.user.user.id);
+   this.updateList();
   },
   methods: {
-    save(i) {
-      console.log(i);
+    filterByTag(type) {
+      if (type == "current") {
+        this.tasks = this.tasksList.filter((c) => {
+          if (!c.done) {
+            return c;
+          }
+        });
+      }
+      if (type == "done") {
+        this.tasks = this.tasksList.filter((c) => {
+          if (c.done) {
+            return c;
+          }
+        });
+      }
+      if (type == "all") {
+        this.tasks = this.tasksList;
+      }
+    },
+    updateList() {
+       this.$store
+      .dispatch("tasks/getUserTasks", this.$store.state.user.user.id)
+      .then(() => {
+        this.filterByTag(this.option)
+        
+      });
+    },
+  },
+  watch: {
+    option(newV) {
+      this.filterByTag(newV);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 .task-manager-view {
-  min-height: 75vh;
+  min-height: 85vh;
 }
 </style>
