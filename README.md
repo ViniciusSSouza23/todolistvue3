@@ -9,7 +9,7 @@ A aplicação foi construída usando as seguintes tecnologias:
 <li>Vue.js</li>
 <li>Vue Router</li>
 <li>Vuex</li>
-<li>Bootstrap<li>
+<li>Bootstrap</li>
 <li>Axios</li>
 <li>Element-Plus</li>
 </ul>
