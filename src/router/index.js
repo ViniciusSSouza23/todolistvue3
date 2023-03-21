@@ -26,6 +26,11 @@ const routes = [
     name: "register",
     component: () => import("../views/RegisterView.vue"),
   },
+  {
+    path: "/gerenciador-de-tarefas",
+    name: "taskManager",
+    component: () => import("../views/TaskManager.vue"),
+  },
 ];
 
 const router = createRouter({
