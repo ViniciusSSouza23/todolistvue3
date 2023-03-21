@@ -50,7 +50,9 @@
 
           <p class="mb-0 mt-4 text-center">
             Ainda não tem uma conta?
-            <router-link to="/">Cadastre-se aqui</router-link>
+            <router-link :to="{ name: 'register' }"
+              >Cadastre-se aqui</router-link
+            >
           </p>
         </div>
       </div>
@@ -58,6 +60,7 @@
   </div>
 </template>
 <script>
+import { ElMessage } from "element-plus";
 export default {
   data() {
     return {
@@ -69,7 +72,22 @@ export default {
   },
   methods: {
     singin() {
-      console.log(this.payload);
+      if (!this.payload.login.length) {
+        ElMessage({
+          showClose: true,
+          message: "Verifique o campo e-mail",
+          type: "warning",
+        });
+        return;
+      }
+      if (!this.payload.password.length) {
+        ElMessage({
+          showClose: true,
+          message: "Verifique o campo de senha",
+          type: "warning",
+        });
+        return;
+      }
     },
   },
 };
