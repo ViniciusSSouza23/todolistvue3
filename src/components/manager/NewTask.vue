@@ -47,6 +47,11 @@ export default {
               user_id: this.$store.state.user.user.id,
               name: this.name,
             },
+          }).then(()=>{
+            this.$store.dispatch(
+            "tasks/getUserTasks",
+            this.$store.state.user.user.id
+          );
           })
           .finally(() => {
             this.$emit("close");

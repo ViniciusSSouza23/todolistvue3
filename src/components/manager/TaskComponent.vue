@@ -32,10 +32,21 @@
         </button>
       </div>
     </div>
+    <el-dialog v-model="confirmationModal" width="30%" class="bg-dark">
+      <confirmation-modal
+        @cancel="confirmationModal = false"
+        @confirm="exclude"
+        copy="Deseja mesmo excluir essa tarefa?"
+      />
+    </el-dialog>
   </div>
 </template>
 <script>
+import ConfirmationModal from "@/components/ConfirmationModal.vue";
 export default {
+  components: {
+    ConfirmationModal,
+  },
   data() {
     return {
       loading: false,
@@ -79,6 +90,22 @@ export default {
         })
         .finally(() => {
           this.loading = false;
+        });
+    },
+    exclude() {
+      this.confirmationModal = false;
+      this.loading = true;
+      this.$store
+        .dispatch("tasks/deleteTask", this.task.id)
+        .then(() => {
+          this.$store.dispatch(
+            "tasks/getUserTasks",
+            this.$store.state.user.user.id
+          );
+        })
+        .finally(() => {
+          this.loading = false;
+          
         });
     },
   },

@@ -47,10 +47,10 @@ export default {
         .catch(reject);
     });
   },
-  deleteTask(context, { user_id, task_id }) {
+  deleteTask(context,  task_id ) {
     return new Promise((resolve, reject) => {
       window.axios
-        .delete(`/users/${user_id}/tasks/${task_id}`)
+        .delete(`/tasks/${task_id}`)
         .then((response) => {
           resolve(response);
         })
