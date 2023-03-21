@@ -40,7 +40,7 @@
                 <button
                   type="button"
                   @click.prevent="singin"
-                  class="btn btn-yellow w-100 py-3"
+                  class="btn btn-success w-100 py-3"
                 >
                   Enviar
                 </button>
@@ -95,8 +95,8 @@ export default {
 <style lang="scss" scoped>
 .login-view {
   min-height: 74.8vh;
-  .btn-yellow {
-    background-color: goldenrod;
+  .btn-success {
+   
     color: #fff;
     font-size: 20px;
     line-height: 24px;

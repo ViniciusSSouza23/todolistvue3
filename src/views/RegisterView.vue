@@ -49,9 +49,16 @@
                 <button
                   type="button"
                   @click.prevent="singIn"
-                  class="btn btn-yellow py-3 w-100"
+                  class="btn btn-success py-3 w-100"
                 >
-                  Cadastrar-se
+                  <div
+                    v-if="loading"
+                    class="spinner-border text-primary spinner-border-md"
+                    role="status"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <span v-else>Cadastrar-se</span>
                 </button>
               </div>
             </div>
@@ -76,6 +83,7 @@ export default {
         password: "",
         confirmPassword: "",
       },
+      loading: false,
     };
   },
   methods: {
@@ -116,6 +124,31 @@ export default {
         });
         return;
       }
+      const data = { ...this.payload };
+      delete data.confirmPassword;
+      this.loading = true;
+      this.$store
+        .dispatch("user/createUser", data)
+        .then(() => {
+          ElMessage({
+            showClose: true,
+            message: "Usuario criado com sucesso!",
+            type: "success",
+          });
+          setTimeout(() => {
+            this.$router.push({ name: "login" });
+          }, 500);
+        })
+        .catch(() => {
+          ElMessage({
+            showClose: true,
+            message: "Houve um erro ao criar o usuario, tente mais tarde",
+            type: "error",
+          });
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };
@@ -124,8 +157,7 @@ export default {
 .register-view {
   min-height: 74.8vh;
 
-  .btn-yellow {
-    background-color: goldenrod;
+  .btn-success {
     color: #fff;
     font-size: 20px;
     line-height: 24px;
