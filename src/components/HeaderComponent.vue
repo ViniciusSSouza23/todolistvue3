@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/">Gerenciar tarefas</router-link>
       <router-link :to="{ name: 'login' }"> Login</router-link>
-      <router-link to="/"> Cadastre-se</router-link>
+      <router-link :to="{name: 'register'}"> Cadastre-se</router-link>
     </div>
   </header>
 </template>
