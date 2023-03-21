@@ -2,18 +2,24 @@ export default {
   getUserTasks(context, user_id) {
     return new Promise((resolve, reject) => {
       window.axios
-        .get(`/users/${user_id}/tasks`)
+        .get(`/tasks`)
         .then((response) => {
-          context.commit("setUserTasks", response.data);
+          const res = response.data.filter((c)=>{
+            if(c.user_id && c.user_id == user_id){
+              return c;
+            }
+          })
+          console.log(res)
+          context.commit("setUserTasks", res);
           resolve(response);
         })
         .catch(reject);
     });
   },
-  getTask(context, { user_id, task_id }) {
+  getTask(context,  task_id ) {
     return new Promise((resolve, reject) => {
       window.axios
-        .get(`/users/${user_id}/tasks/${task_id}`)
+        .get(`/tasks/${task_id}`)
         .then((response) => {
           context.commit("setTask", response.data);
           resolve(response);
@@ -21,10 +27,10 @@ export default {
         .catch(reject);
     });
   },
-  createTask(context, { user_id, data }) {
+  createTask(context, {  data }) {
     return new Promise((resolve, reject) => {
       window.axios
-        .post(`/users/${user_id}/tasks`, data)
+        .post(`/tasks`, data)
         .then((response) => {
           resolve(response);
         })

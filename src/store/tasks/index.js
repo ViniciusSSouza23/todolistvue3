@@ -6,7 +6,7 @@ export default {
     task: {},
   }),
   mutations: {
-    setUsertasks(state, tasks) {
+    setUserTasks(state, tasks) {
       state.tasksList = tasks;
     },
     setTask(state, task) {
