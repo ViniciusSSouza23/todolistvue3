@@ -11,16 +11,22 @@
     </div>
     <div v-else class="container py-5">
       <div class="custom-header pt-5">
-        <div class="d-flex align-items-center">
-          <h5 class="text-uppercase">Minhas Tarefas</h5>
-          <div class="flex-fill"></div>
+        <div
+          :class="[fullscreen ? 'flex-column' : '']"
+          class="d-flex align-items-center"
+        >
+          <h5 :class="[fullscreen ? 'order-1' : '']" class="text-uppercase">
+            Minhas Tarefas
+          </h5>
+          <div class="flex-fill d-none d-lg-flex"></div>
           <button
+            :class="[fullscreen ? 'w-100 mb-4 order-3' : '']"
             @click="newTaskModal = true"
-            class="btn btn-primary mt-4 me-4"
+            class="btn btn-primary mt-4 me-lg-4"
           >
             Criar tarefa
           </button>
-          <div class="form-group">
+          <div :class="[fullscreen ? 'w-100 order-2' : '']" class="form-group">
             <label for="options">Filtrar por:</label>
             <select
               v-model="option"
@@ -50,7 +56,12 @@
         <em>Você ainda não cadastrou nenhuma tarefa :(</em>
       </div>
     </div>
-    <el-dialog width="30%" v-model="newTaskModal" class="bg-dark p-3">
+    <el-dialog
+      :fullscreen="fullscreen"
+      width="30%"
+      v-model="newTaskModal"
+      class="bg-dark p-3"
+    >
       <new-task @close="newTaskModal = false" />
     </el-dialog>
   </div>
@@ -59,6 +70,7 @@
 import TaskComponent from "@/components/manager/TaskComponent.vue";
 import NewTask from "@/components/manager/NewTask.vue";
 import { mapState } from "vuex";
+import { isMobile } from "@/helpers.js";
 export default {
   components: { TaskComponent, NewTask },
   data() {
@@ -71,6 +83,13 @@ export default {
   },
   computed: {
     ...mapState("tasks", ["tasksList"]),
+    fullscreen() {
+      if (isMobile) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   mounted() {
     this.updateList();

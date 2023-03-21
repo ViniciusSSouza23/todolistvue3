@@ -121,6 +121,9 @@ export default {
 <style lang="scss" scoped>
 .login-view {
   min-height: 74.8vh;
+  @media screen and (max-width: 991px) {
+    min-height: 85vh;
+  }
   .btn-success {
     color: #fff;
     font-size: 20px;

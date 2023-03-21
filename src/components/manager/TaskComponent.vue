@@ -32,7 +32,12 @@
         </button>
       </div>
     </div>
-    <el-dialog v-model="confirmationModal" width="30%" class="bg-dark">
+    <el-dialog
+      :fullscreen="fullscreen"
+      v-model="confirmationModal"
+      width="30%"
+      class="bg-dark"
+    >
       <confirmation-modal
         @cancel="confirmationModal = false"
         @confirm="exclude"
@@ -43,6 +48,7 @@
 </template>
 <script>
 import ConfirmationModal from "@/components/ConfirmationModal.vue";
+import { isMobile } from "@/helpers.js";
 export default {
   components: {
     ConfirmationModal,
@@ -72,6 +78,13 @@ export default {
         return "concluída";
       } else {
         return "em andamento";
+      }
+    },
+    fullscreen() {
+      if (isMobile) {
+        return true;
+      } else {
+        return false;
       }
     },
   },

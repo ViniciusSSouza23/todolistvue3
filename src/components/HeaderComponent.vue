@@ -16,7 +16,11 @@
         <button class="btn" @click="logout" v-else>Sair</button>
       </div>
     </div>
-    <el-dialog v-model="showLoginModal" class="bg-dark p-4">
+    <el-dialog
+      :fullscreen="fullscreen"
+      v-model="showLoginModal"
+      class="bg-dark p-4"
+    >
       <h4 class="mb-5 text-center text-white">
         Para acessar essa area você precisa estar logado.
       </h4>
@@ -30,6 +34,7 @@
 </template>
 <script>
 import { ElMessage } from "element-plus";
+import { isMobile } from "@/helpers.js";
 export default {
   data() {
     return {
@@ -44,6 +49,13 @@ export default {
         return false;
       }
     },
+    fullscreen() {
+      if (isMobile) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
     logout() {
@@ -53,6 +65,7 @@ export default {
         showClose: true,
         message: "Deslogado com sucesso",
       });
+      this.$router.push({ name: "home" });
     },
     goLogin() {
       this.showLoginModal = false;

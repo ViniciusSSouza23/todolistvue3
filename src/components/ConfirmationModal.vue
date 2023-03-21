@@ -1,8 +1,12 @@
 <template>
   <div class="confirmation-modal p-3">
     <h5 class="text-center text-white mb-5">{{ copy }}</h5>
-    <div class="d-flex align-items-center justify-content-center flex-column flex-lg-row">
-      <button class="btn btn-secondary me-4" @click="cancel">Cancelar</button>
+    <div
+      class="d-flex align-items-center justify-content-center flex-column flex-lg-row"
+    >
+      <button class="btn btn-secondary me-lg-4 mb-4 mb-lg-0" @click="cancel">
+        Cancelar
+      </button>
       <button class="btn btn-danger" @click="confirm">Confirmar</button>
     </div>
   </div>

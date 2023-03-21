@@ -23,8 +23,13 @@
             usuário e esperamos que aproveite ao máximo essa ferramenta útil.
           </p>
         </div>
-        <div class="col-lg-6 order-lg-1">
-          <img src="@/assets/images/logo.png" alt="Logo" class="img-fluid" width="450" />
+        <div class="col-lg-6 order-lg-1 text-center text-lg-start">
+          <img
+            src="@/assets/images/logo.png"
+            alt="Logo"
+            class="img-fluid"
+            width="450"
+          />
         </div>
       </div>
     </div>
@@ -32,7 +37,7 @@
 </template>
 <style lang="scss" scoped>
 .home-view {
-  min-height: 74.8vh;
+  min-height: 84vh;
   //background-color: #565656;
 }
 </style>
