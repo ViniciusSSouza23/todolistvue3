@@ -2,7 +2,7 @@
 
 O projeto é uma aplicação To Do list que permite ao usuário gerenciar suas tarefas em uma tela de gerenciamento de tarefas, além de ter uma tela de login. É possível criar, excluir e editar tarefas, bem como criar novos usuários.
 
-##Tecnologias Utilizadas
+## Tecnologias Utilizadas
 A aplicação foi construída usando as seguintes tecnologias:
 
 <ul>
@@ -14,7 +14,7 @@ A aplicação foi construída usando as seguintes tecnologias:
 <li>Element-Plus</li>
 </ul>
 
-##Requisitos
+## Requisitos
 Para executar a aplicação em sua máquina local, é necessário ter as seguintes tecnologias instaladas:
 
 <ul>
@@ -22,7 +22,7 @@ Para executar a aplicação em sua máquina local, é necessário ter as seguint
 <li>Yarn (gerenciador de pacotes)</li>
 </ul>
 
-##Como Executar
+## Como Executar
 
 Para executar a aplicação em sua máquina local, siga os seguintes passos:
 
@@ -34,12 +34,12 @@ Para executar a aplicação em sua máquina local, siga os seguintes passos:
 <li>Acesse a URL disponibilizada para acessar a aplicação.</li>
 </ol>
 
-##Lint
+## Lint
 Para executar o lint, execute o seguinte comando:
 
 yarn lint --fix
 
-##Deploy
+## Deploy
 Para fazer o deploy da aplicação, execute o seguinte comando:
 yarn build
 Este comando irá gerar uma pasta dist que contém todos os arquivos necessários para fazer o deploy da aplicação.
