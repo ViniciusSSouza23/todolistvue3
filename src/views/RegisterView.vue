@@ -82,6 +82,7 @@ export default {
         login: "",
         password: "",
         confirmPassword: "",
+        active: true
       },
       loading: false,
     };

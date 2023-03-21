@@ -39,7 +39,7 @@
               <div class="col-lg-6">
                 <button
                   type="button"
-                  @click.prevent="singin"
+                  @click.prevent="login"
                   class="btn btn-success w-100 py-3"
                 >
                   Enviar
@@ -61,6 +61,7 @@
 </template>
 <script>
 import { ElMessage } from "element-plus";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -70,8 +71,11 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState("user", ["userList"]),
+  },
   methods: {
-    singin() {
+    login() {
       if (!this.payload.login.length) {
         ElMessage({
           showClose: true,
@@ -88,6 +92,28 @@ export default {
         });
         return;
       }
+      this.$store.dispatch("user/getUsers").then(() => {
+        const id = this.userList.filter((c) => {
+          if (
+            c.login == this.payload.login &&
+            c.password == this.payload.password
+          ) {
+            return c;
+          }
+        });
+
+        if (id.length) {
+          this.$store.dispatch("user/getUser", id[0].id).then(() => {
+            this.$router.push({ name: "home" });
+          });
+        } else {
+          ElMessage({
+            showClose: true,
+            message: "Usuario ou senha errados",
+            type: "error",
+          });
+        }
+      });
     },
   },
 };
@@ -96,7 +122,6 @@ export default {
 .login-view {
   min-height: 74.8vh;
   .btn-success {
-   
     color: #fff;
     font-size: 20px;
     line-height: 24px;

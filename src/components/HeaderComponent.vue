@@ -8,6 +8,13 @@
     </div>
   </header>
 </template>
+<script>
+export default {
+  mounted(){
+    console.log(this.$store.state.user)
+  }
+}
+</script>
 <style lang="scss" scoped>
 .header-component {
   background-color: #000;

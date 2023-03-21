@@ -4,6 +4,7 @@ export default {
       window.axios
         .get("/users")
         .then((response) => {
+          console.log(response.data)
           context.commit("setUserList", response.data);
           resolve(response);
         })
@@ -26,6 +27,7 @@ export default {
       window.axios
         .post(`/users`, data)
         .then((response) => {
+          context.commit("setUser", response.data);
           resolve(response);
         })
         .catch(reject);
