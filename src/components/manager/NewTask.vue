@@ -54,6 +54,8 @@ export default {
           );
           })
           .finally(() => {
+            this.desc = "";
+            this.name =""
             this.$emit("close");
           });
       } else {

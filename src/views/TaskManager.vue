@@ -62,7 +62,7 @@
       v-model="newTaskModal"
       class="bg-dark p-3"
     >
-      <new-task @close="newTaskModal = false" />
+      <new-task @close="close" />
     </el-dialog>
   </div>
 </template>
@@ -125,6 +125,10 @@ export default {
           this.loading = false;
         });
     },
+    close(){
+      this.newTaskModal = false;
+      this.updateList();
+    }
   },
   watch: {
     option(newV) {
